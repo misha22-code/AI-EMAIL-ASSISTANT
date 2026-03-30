@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Edit Reply</h2>
+
+<form method="POST" action="/send_reply">
+    
+    <textarea name="reply" rows="15" cols="80">{{ reply }}</textarea>
+
+    <br><br>
+
+    <input type="hidden" name="to_email" value="{{ to_email }}">
+    <input type="hidden" name="subject" value="{{ subject }}">
+
+    <button type="submit">Send Edited Email</button>
+
+</form>
+
+{% endblock %}

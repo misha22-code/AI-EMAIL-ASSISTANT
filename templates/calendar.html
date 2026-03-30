@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+</head>
+<body style="font-family: Arial; background:#f4f7fb; padding:20px;">
+
+<h2>📅 Calendar Dashboard</h2>
+
+<!-- CREATE EVENT CARD -->
+<div style="border:1px solid #ccc; padding:20px; width:400px; border-radius:10px; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    
+    <h3>Create Event</h3>
+
+    <form action="/create_event" method="POST">
+        
+        <input type="text" name="summary" placeholder="Event Title" required
+               style="width:100%; padding:8px;"><br><br>
+
+        <input type="text" name="description" placeholder="Description"
+               style="width:100%; padding:8px;"><br><br>
+
+        <label>Start:</label><br>
+        <input type="datetime-local" name="start_time" required
+               style="width:100%; padding:8px;"><br><br>
+
+        <label>End:</label><br>
+        <input type="datetime-local" name="end_time" required
+               style="width:100%; padding:8px;"><br><br>
+
+        <button type="submit"
+                style="background:#3b82f6; color:white; padding:10px 15px; border:none; border-radius:6px; cursor:pointer;">
+            Create Event
+        </button>
+
+    </form>
+</div>
+
+<br>
+
+<!-- EVENTS LIST CARD -->
+<div style="border:1px solid #ccc; padding:20px; width:400px; border-radius:10px; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+    
+    <h3>Upcoming Events</h3>
+
+    <ul style="list-style:none; padding:0;">
+    {% for event in events %}
+        <li style="margin-bottom:15px; padding:10px; border-bottom:1px solid #eee;">
+            
+            <b style="color:#333;">{{ event.summary }}</b><br>
+
+            <span style="color:#555;">
+            {% if event.start.dateTime %}
+                {{ event.start.dateTime }}
+            {% else %}
+                {{ event.start.date }}
+            {% endif %}
+            </span>
+
+        </li>
+    {% endfor %}
+    </ul>
+
+</div>
+
+<br><br>
+
+<!-- BACK BUTTON -->
+<a href="/emails"
+   style="text-decoration:none; background:#22c55e; color:white; padding:10px 15px; border-radius:6px;">
+   ⬅ Back to Emails
+</a>
+
+</body>
+</html>

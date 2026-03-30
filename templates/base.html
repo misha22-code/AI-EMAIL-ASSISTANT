@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Email Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">📧 AI Email Assistant</div>
+
+    <div>
+        <a href="/dashboard"><button class="nav-btn">📊 Dashboard</button></a>
+        <a href="/history"><button class="nav-btn">📜 Reply History</button></a>
+        <a href="/inbox_summary"><button class="nav-btn">🧠 Inbox Summary</button></a>
+        <a href="/starred"><button class="nav-btn">⭐ Starred</button></a>
+        <a href="/export_csv"><button class="export-btn">Export CSV</button></a>
+        <a href="/profile"><button class="profile-btn">Profile</button></a>
+        <a href="/logout"><button class="logout">Logout</button></a>
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

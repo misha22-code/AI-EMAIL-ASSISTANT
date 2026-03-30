@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>⭐ Starred Emails</h1>
+
+{% for email in emails %}
+<div class="card">
+    <p><b>From:</b> {{ email.sender }}</p>
+    <p><b>Subject:</b> {{ email.subject }}</p>
+    <p>{{ email.body }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

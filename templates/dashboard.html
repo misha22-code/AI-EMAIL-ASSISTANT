@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Email Analytics Dashboard</h1>
+
+<div class="stat-box">
+    <h3>Total Emails</h3>
+    <p>{{ stats.total }}</p>
+</div>
+
+<div class="stat-box">
+    <h3>Work Emails</h3>
+    <p>{{ stats.Work }}</p>
+</div>
+
+<div class="stat-box">
+    <h3>Personal Emails</h3>
+    <p>{{ stats.Personal }}</p>
+</div>
+
+<div class="stat-box">
+    <h3>Promotion Emails</h3>
+    <p>{{ stats.Promotion }}</p>
+</div>
+
+<div class="stat-box">
+    <h3>Spam Emails</h3>
+    <p>{{ stats.Spam }}</p>
+</div>
+
+<div class="stat-box">
+    <h3>Replies Sent</h3>
+    <p>{{ stats.replies_sent }}</p>
+</div>
+
+<hr>
+
+<h2>Email Categories Chart</h2>
+
+<canvas id="emailChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+var work = "{{ stats.Work }}";
+var personal = "{{ stats.Personal }}";
+var promotion = "{{ stats.Promotion }}";
+var spam = "{{ stats.Spam }}";
+
+var ctx = document.getElementById('emailChart').getContext('2d');
+
+var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Work', 'Personal', 'Promotion', 'Spam'],
+        datasets: [{
+            label: 'Emails',
+            data: [work, personal, promotion, spam]
+        }]
+    }
+});
+</script>
+
+{% endblock %}

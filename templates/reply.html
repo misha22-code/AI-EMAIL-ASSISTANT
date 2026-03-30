@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>AI Reply</h2>
+
+<p><strong>Sender:</strong> {{ sender }}</p>
+<p><strong>Tone:</strong> {{ tone }}</p>
+
+<hr>
+
+<h3>AI Generated Reply:</h3>
+
+<form method="POST" action="/send_reply">
+    
+    <textarea name="reply" rows="12" cols="80">{{ ai_reply }}</textarea>
+
+    <br><br>
+
+    <!-- IMPORTANT HIDDEN FIELDS -->
+    <input type="hidden" name="to_email" value="{{ sender }}">
+    <input type="hidden" name="subject" value="Re: Email Reply">
+
+    <button type="submit">Send Email</button>
+</form>
+
+<br>
+
+<!-- EDIT BUTTON -->
+<form method="POST" action="/edit_reply">
+    <input type="hidden" name="reply" value="{{ ai_reply }}">
+    <input type="hidden" name="to_email" value="{{ sender }}">
+    <input type="hidden" name="subject" value="Re: Email Reply">
+    <button type="submit">Edit Reply</button>
+</form>
+
+<hr>
+
+<!-- ✅ MEETING DETECTION SECTION -->
+{% if meeting_info %}
+    <h3>📅 Meeting Detected</h3>
+
+    <pre style="background:#f4f4f4; padding:10px; border-radius:8px;">
+{{ meeting_info }}
+    </pre>
+
+    <form action="/create_event_from_email" method="POST">
+        <input type="hidden" name="meeting_info" value="{{ meeting_info }}">
+        <button type="submit">➕ Create Calendar Event</button>
+    </form>
+{% endif %}
+
+{% endblock %}

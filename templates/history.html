@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Reply History</h1>
+
+{% for item in history %}
+<div class="card">
+    <p><b>To:</b> {{ item.to }}</p>
+    <p><b>Subject:</b> {{ item.subject }}</p>
+    <p><b>Reply:</b> {{ item.reply }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}
